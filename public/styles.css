@@ -1,0 +1,18 @@
+.play{
+    background-color: aquamarine;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+}
+
+.play .button{
+    border-style:solid;
+    box-sizing: border-box;
+    border-width: 40px 0px 40px 80px;
+    border-color: transparent transparent transparent #202020;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: 25%;
+    left: 30%;
+}

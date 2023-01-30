@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Timer from './components/timer';
+import App from './components/app';
 
-const App = () => {
+const Pomodoro = () => {
   return (
     <div>
-      <Timer />
+      <App />
     </div>
   )
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Pomodoro />, document.querySelector('#root'));

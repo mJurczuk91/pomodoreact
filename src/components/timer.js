@@ -1,15 +1,19 @@
-import React, {useState} from 'react';
-import TimerDisplay from './timer_display.js';
+import React, {useEffect, useState} from 'react';
 
-const Timer = ({minutes}) => {
+const Timer = ({initialSeconds}) => {
 
-    let [time, setTime] = useState(minutes * 60);
+    useEffect(() => {
+        if(intervalID) clearInterval(intervalID);
+        setTime(0);
+    }, [initialSeconds]);
+
+    let [timeElapsed, setTime] = useState(0);
     let [intervalID, setIntervalID] = useState(null);
-    console.log(time);
+
     const toggleCountdown = () => {
         if (!intervalID) {
             let id = setInterval(() => {
-                setTime(time--);
+                setTime(++timeElapsed);
             }, 1000);
             setIntervalID(id);
         } else {
@@ -18,10 +22,21 @@ const Timer = ({minutes}) => {
         }
     }
 
-    return <div>
-        <div onClick={toggleCountdown}>START</div>
-        <TimerDisplay seconds={time} />
-    </div>;
+    const parseTime = () => {
+        let sec = (initialSeconds - timeElapsed) % 60;
+        let min = (initialSeconds - timeElapsed - sec) / 60;
+        if(sec === 0){
+            sec = '00';
+        }
+        return {
+            min,
+            sec
+        };
+    }
+
+    return <div onClick={toggleCountdown}>
+        <p>{parseTime().min}:{parseTime().sec}</p>
+    </div>
 }
 
 export default Timer;

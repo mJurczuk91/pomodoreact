@@ -9,7 +9,7 @@ class App extends Component {
             shortBreak: 5,
             longBreak: 15
         },
-        
+        pomodoro: 25,
         sessions: 3,
         pomodorosBeforeLongBreak: 3,
 
@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     toggleMenuVisibility = () => {
-        console.log(this.state.tasks.pomodoro);
+        console.log(this.state.pomodoro);
         this.setState({
             isMenuVisible: !(this.state.isMenuVisible)
         });
@@ -32,13 +32,13 @@ class App extends Component {
 
     setTaskLength = (task, length) => {
         let literal = `tasks.${task}`;
-        console.log(literal, length);
+        console.log(task, length);
         this.setState({
             tasks: {
                 [task]: length
             }
         });
-        console.log(this.state.tasks.pomodoro);
+        //console.log(this.state.pomodoro);
     }
 
     render() {
@@ -46,7 +46,7 @@ class App extends Component {
             <div className='app'>
                 <button className='button'>HEY YO</button>
                 <Modal
-                    pomodoro={this.state.tasks.pomodoro}
+                    pomodoro={this.state.pomodoro}
                     shortBreak={this.state.tasks.shortBreak}
                     longBreak={this.state.tasks.longBreak}
                     sessions={this.state.sessions}
@@ -56,7 +56,7 @@ class App extends Component {
                     setTaskLength={this.setTaskLength}
                 />
                 <div onClick={this.toggleMenuVisibility}>SETTINGS</div>
-                <Timer minutes={this.state.tasks[this.state.currentTask]}/>
+                <Timer initialSeconds={(this.state.tasks[this.state.currentTask]) * 60}/>
             </div>
         )
     }

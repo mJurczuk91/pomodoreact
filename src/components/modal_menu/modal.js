@@ -1,5 +1,4 @@
 import React from 'react';
-import InputBox from './input_box';
 
 const Modal = ({
     pomodoro,
@@ -8,20 +7,47 @@ const Modal = ({
     pomodorosBeforeLongBreak,
     sessions,
     toggleMenuVisibility,
-    isMenuVisible
+    isMenuVisible,
+    setTaskLength
 }) => {
+    let changeHandler = (task, length) => {
+        setTaskLength(task, length);
+    }
+
     return (
         <div className='modal' style={{display:  isMenuVisible ? 'block' : 'none' }}>
+
             <div className='modal-header'>
                 <h2>Settings</h2>
                 <h2 className='close' onClick={toggleMenuVisibility}>&times;</h2>
             </div>
+
             <div className='modal-body'>
-                <InputBox label={'pomodoro minutes:'} value={pomodoro}/>
-                <InputBox label={'short break:'} value={shortBreak}/>
-                <InputBox label={'long break:'} value={longBreak}/>
-                <InputBox label={'pomodoros before long break:'} value={pomodorosBeforeLongBreak} />
-                <InputBox label={'number of sessions:'} value={sessions} />
+
+                <div className='modal-menu-element'>
+                    <p>Pomodoro length :</p>
+                    <input type={"number"} defaultValue={pomodoro} onChange={(e) => {changeHandler('pomodoro', e.target.value)}}></input>
+                </div>
+
+                <div className='modal-menu-element'>
+                    <p>Short break :</p>
+                    <input type={"number"} defaultValue={shortBreak} onChange={(e) => {changeHandler('shortBreak', e.target.value)}}></input>
+                </div>
+
+                <div className='modal-menu-element'>
+                    <p>Long break :</p>
+                    <input type={"number"} defaultValue={longBreak} onChange={(e) => {changeHandler('longBreak', e.target.value)}}></input>
+                </div>
+
+                <div className='modal-menu-element'>
+                    <p>Pomodoros before long break :</p>
+                    <input type={"number"} defaultValue={pomodorosBeforeLongBreak} onChange={(e) => {changeHandler('pomodorosBeforeLongBreak', e.target.value)}}></input>
+                </div>
+
+                <div className='modal-menu-element'>
+                    <p>Number of sessions :</p>
+                    <input type={"number"} defaultValue={sessions} onChange={(e) => {changeHandler('sessions', e.target.value)}}></input>
+                </div>
             </div>
         </div>
     );

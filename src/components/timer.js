@@ -1,37 +1,27 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import TimerDisplay from './timer_display.js';
 
-class Timer extends Component{
-    state = {
-        startTime: this.props.seconds,
-        currentTime: this.props.seconds,
-        intervalID: null
-    };
+const Timer = ({minutes}) => {
 
-    toggleCountdown = () => {
-        if(!this.state.intervalID){
-            let id = setInterval(()=>{
-                this.setState({
-                    currentTime: this.state.currentTime-1
-                });
+    let [time, setTime] = useState(minutes * 60);
+    let [intervalID, setIntervalID] = useState(null);
+    console.log(time);
+    const toggleCountdown = () => {
+        if (!intervalID) {
+            let id = setInterval(() => {
+                setTime(time--);
             }, 1000);
-            this.setState({
-                intervalID: id
-            });
+            setIntervalID(id);
         } else {
-            clearInterval(this.state.intervalID);
-            this.setState({
-                intervalID: null
-            });
+            clearInterval(intervalID);
+            setIntervalID(null);
         }
     }
 
-    render(){
-        return <div>
-            <div onClick={this.toggleCountdown}>START</div>
-            <TimerDisplay seconds={this.state.currentTime}/>
-        </div>;
-    }
+    return <div>
+        <div onClick={toggleCountdown}>START</div>
+        <TimerDisplay seconds={time} />
+    </div>;
 }
 
 export default Timer;

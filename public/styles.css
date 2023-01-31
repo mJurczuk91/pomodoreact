@@ -1,20 +1,19 @@
-.play{
-    background-color: aquamarine;
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
+.app{
+    background-color: #66ca66;
 }
 
-.play .button{
-    border-style:solid;
-    box-sizing: border-box;
-    border-width: 40px 0px 40px 80px;
-    border-color: transparent transparent transparent #202020;
-    width: 80px;
-    height: 80px;
-    position: relative;
-    top: 25%;
-    left: 30%;
+.button{
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 80%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+}
+.button:hover{
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .dot {
@@ -28,10 +27,10 @@
 .modal{
     position: fixed;
     background-color: #fefefe;
-    left: 20%;
+    left: 30%;
     padding: 0;
     border: 1px solid #888;
-    width: 60%;
+    width: 40%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: slideFromTop;
     animation-duration: 0.6s
@@ -50,6 +49,17 @@
     padding: 2px 16px;
     display: flex;
     flex-direction: column;
+  }
+
+  .modal-menu-element{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .modal-menu-element input{
+    height:fit-content;
+    width: fit-content;
   }
 
 .input-box{

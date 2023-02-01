@@ -13,10 +13,10 @@ class App extends Component {
         sessions: 3,
         pomodorosBeforeLongBreak: 3,
 
-        isMenuVisible: true,
+        isMenuVisible: false,
         currentTask: 'pomodoro',
 
-        timesFinished:{
+        timesFinished: {
             pomodoro: 0,
             shortBreak: 0,
             longBreak: 0
@@ -24,27 +24,26 @@ class App extends Component {
     }
 
     toggleMenuVisibility = () => {
-        console.log(this.state.pomodoro);
         this.setState({
             isMenuVisible: !(this.state.isMenuVisible)
         });
     }
 
     setTaskLength = (task, length) => {
-        let literal = `tasks.${task}`;
-        console.log(task, length);
         this.setState({
             tasks: {
                 [task]: length
             }
         });
-        //console.log(this.state.pomodoro);
+    }
+    
+    modeButtonClicked = (event) => {
+        this.setState({ currentTask: event.target.name })
     }
 
     render() {
         return (
-            <div className='app'>
-                <button className='button'>HEY YO</button>
+            <div>
                 <Modal
                     pomodoro={this.state.pomodoro}
                     shortBreak={this.state.tasks.shortBreak}
@@ -55,8 +54,20 @@ class App extends Component {
                     toggleMenuVisibility={this.toggleMenuVisibility}
                     setTaskLength={this.setTaskLength}
                 />
-                <div onClick={this.toggleMenuVisibility}>SETTINGS</div>
-                <Timer initialSeconds={(this.state.tasks[this.state.currentTask]) * 60}/>
+
+                <div className='header'>
+                    <button onClick={this.toggleMenuVisibility} className="button">SETTINGS</button>
+                </div>
+
+                <div className='app'>
+                    <div className='timer-modes'>
+                        <button name="pomodoro" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "pomodoro" ? 'active' : ''}`}>Pomodoro</button>
+                        <button name="shortBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "shortBreak" ? 'active' : ''}`}>Short Break</button>
+                        <button name="longBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "longBreak" ? 'active' : ''}`}>Long Break</button>
+                    </div>
+
+                    <Timer initialSeconds={(this.state.tasks[this.state.currentTask]) * 60} />
+                </div>
             </div>
         )
     }

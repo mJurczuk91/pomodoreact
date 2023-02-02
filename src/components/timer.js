@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Timer = ({initialSeconds}) => {
     let [timeElapsed, setTime] = useState(0);
@@ -12,7 +12,7 @@ const Timer = ({initialSeconds}) => {
         setTime(0);
     }
 
-    useEffect(() => resetTimer(), [initialSeconds]);
+    useEffect(resetTimer, [initialSeconds]);
 
     const toggleCountdown = () => {
         if (!intervalID) {

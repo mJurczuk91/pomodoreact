@@ -4,23 +4,19 @@ import Timer from './timer.js';
 
 class App extends Component {
     state = {
-        tasks: {
-            pomodoro: 25,
-            shortBreak: 5,
-            longBreak: 15
-        },
         pomodoro: 25,
+        shortBreak: 5,
+        longBreak: 15,
+
         sessions: 3,
         pomodorosBeforeLongBreak: 3,
 
         isMenuVisible: false,
         currentTask: 'pomodoro',
 
-        timesFinished: {
-            pomodoro: 0,
-            shortBreak: 0,
-            longBreak: 0
-        }
+        timesDonePomodoro: 0,
+        timesDoneShortBreak: 0,
+        timesDoneLongBreak: 0
     }
 
     toggleMenuVisibility = () => {
@@ -31,9 +27,7 @@ class App extends Component {
 
     setTaskLength = (task, length) => {
         this.setState({
-            tasks: {
-                [task]: length
-            }
+            [task]: length
         });
     }
     
@@ -46,8 +40,8 @@ class App extends Component {
             <div>
                 <Modal
                     pomodoro={this.state.pomodoro}
-                    shortBreak={this.state.tasks.shortBreak}
-                    longBreak={this.state.tasks.longBreak}
+                    shortBreak={this.state.shortBreak}
+                    longBreak={this.state.longBreak}
                     sessions={this.state.sessions}
                     pomodorosBeforeLongBreak={this.state.pomodorosBeforeLongBreak}
                     isMenuVisible={this.state.isMenuVisible}
@@ -66,7 +60,7 @@ class App extends Component {
                         <button name="longBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "longBreak" ? 'active' : ''}`}>Long Break</button>
                     </div>
 
-                    <Timer initialSeconds={(this.state.tasks[this.state.currentTask]) * 60} />
+                    <Timer initialSeconds={(this.state[this.state.currentTask]) * 60} />
                 </div>
             </div>
         )

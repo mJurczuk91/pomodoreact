@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const Timer = ({initialSeconds}) => {
+const Timer = ({initialSeconds, taskDidFinish}) => {
     let [timeElapsed, setTime] = useState(0);
     let [intervalID, setIntervalID] = useState(null);
 
@@ -17,7 +17,14 @@ const Timer = ({initialSeconds}) => {
     const toggleCountdown = () => {
         if (!intervalID) {
             setIntervalID(
-                setInterval(() => setTime(++timeElapsed), 1000)
+                setInterval(() => {
+                    setTime(++timeElapsed);
+                    console.log(timeElapsed, initialSeconds);
+                    if(timeElapsed === initialSeconds){
+                        resetTimer();
+                        taskDidFinish();
+                    }
+                }, 1000)
             );
         } else {
             clearInterval(intervalID);

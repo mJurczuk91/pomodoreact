@@ -120,3 +120,23 @@ html{
     from {top: -400px; opacity: 0}
     to {top: 0; opacity: 1}
   }
+
+.dot{
+  height: 1.5em;
+  width: 1.5em;
+  background: transparent;
+  border-radius: 50%;
+  border: 1px solid gold;
+  margin: 1em;
+  display: inline-block;
+}
+
+.dot-finished{
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  background-color: gold;
+  border: 1px solid gold;
+  margin: 1em;
+  display: inline-block;
+}

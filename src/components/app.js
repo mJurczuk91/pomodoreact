@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Modal from './modal_menu/modal.js';
 import Timer from './timer.js';
+import FinishedPomodorosDisplay from './finished_pomodoros_display.js';
 
 class App extends Component {
     state = {
@@ -10,7 +11,7 @@ class App extends Component {
         longBreak: 15,
 
         pomodorosBeforeLongBreak: 3,
-        pomodorosDone: 0,
+        pomodorosDone: 1,
 
         isMenuVisible: false
     }
@@ -78,6 +79,7 @@ class App extends Component {
                     </div>
 
                     <Timer initialSeconds={(this.state[this.state.currentTask]) * 60} taskDidFinish={this.taskDidFinish} />
+                    <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak}></FinishedPomodorosDisplay>
                 </div>
             </div>
         )

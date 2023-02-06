@@ -11,7 +11,7 @@ class App extends Component {
         longBreak: 15,
 
         pomodorosBeforeLongBreak: 3,
-        pomodorosDone: 1,
+        pomodorosDone: 0,
 
         isMenuVisible: false
     }
@@ -79,7 +79,9 @@ class App extends Component {
                     </div>
 
                     <Timer initialSeconds={(this.state[this.state.currentTask]) * 60} taskDidFinish={this.taskDidFinish} />
-                    <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak}></FinishedPomodorosDisplay>
+                    <div><hr/>Pomodoros completed: 
+                        <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak}></FinishedPomodorosDisplay>
+                    </div>
                 </div>
             </div>
         )

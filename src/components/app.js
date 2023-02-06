@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Modal from './modal_menu/modal.js';
 import Timer from './timer.js';
 import FinishedPomodorosDisplay from './finished_pomodoros_display.js';
+import './css/style.css';
 
 class App extends Component {
     state = {
@@ -67,11 +68,11 @@ class App extends Component {
                     setTaskLength={this.setTaskLength}
                 />
 
-                <div className='header'>
+                <div>
                     <button onClick={this.toggleMenuVisibility} className="button">SETTINGS</button>
                 </div>
 
-                <div className='app'>
+                <div>
                     <div className='timer-modes'>
                         <button name="pomodoro" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "pomodoro" ? 'active' : ''}`}>Pomodoro</button>
                         <button name="shortBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "shortBreak" ? 'active' : ''}`}>Short Break</button>

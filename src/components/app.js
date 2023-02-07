@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Modal from './modal_menu/modal.js';
 import Timer from './timer.js';
 import FinishedPomodorosDisplay from './finished_pomodoros_display.js';
+import Header from './header.js';
 import './css/style.css';
 
 class App extends Component {
@@ -20,8 +21,8 @@ class App extends Component {
     taskDidFinish = () => {
         let nextTask = 'pomodoro';
         let setPomodorosDone = this.state.pomodorosDone;
-        if(this.state.currentTask === 'pomodoro'){
-            if(this.state.pomodorosDone === this.state.pomodorosBeforeLongBreak - 1){
+        if (this.state.currentTask === 'pomodoro') {
+            if (this.state.pomodorosDone === this.state.pomodorosBeforeLongBreak - 1) {
                 setPomodorosDone = 0;
                 nextTask = 'longBreak';
             }
@@ -49,14 +50,14 @@ class App extends Component {
             [task]: length
         });
     }
-    
-    modeButtonClicked = (event) => {
-        this.setState({ currentTask: event.target.name })
+
+    modeButtonClicked = (taskName) => {
+        this.setState({ currentTask: taskName })
     }
 
     render() {
         return (
-            <div>
+            <div className=' m-auto'>
                 <Modal
                     pomodoro={this.state.pomodoro}
                     shortBreak={this.state.shortBreak}
@@ -68,21 +69,10 @@ class App extends Component {
                     setTaskLength={this.setTaskLength}
                 />
 
-                <div>
-                    <button onClick={this.toggleMenuVisibility} className="button">SETTINGS</button>
-                </div>
-
-                <div>
-                    <div className='timer-modes'>
-                        <button name="pomodoro" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "pomodoro" ? 'active' : ''}`}>Pomodoro</button>
-                        <button name="shortBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "shortBreak" ? 'active' : ''}`}>Short Break</button>
-                        <button name="longBreak" onClick={this.modeButtonClicked} className={`button ${this.state.currentTask === "longBreak" ? 'active' : ''}`}>Long Break</button>
-                    </div>
-
+                <div className='max-w-2xl m-auto'>
+                    <Header toggleMenuVisibility={this.toggleMenuVisibility} modeButtonClicked={this.modeButtonClicked} />
                     <Timer initialSeconds={(this.state[this.state.currentTask]) * 60} taskDidFinish={this.taskDidFinish} />
-                    <div><hr/>Pomodoros completed: 
-                        <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak}></FinishedPomodorosDisplay>
-                    </div>
+                    <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak} />
                 </div>
             </div>
         )

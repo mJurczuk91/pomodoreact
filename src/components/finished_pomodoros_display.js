@@ -16,6 +16,7 @@ const FinishedPomodorosDisplay = ({pomodoros, maxPomodoros}) => {
     }
 
     return <div>
+        <p>Pomodoros completed:</p>
         {dots().map((dot, index) => {
             return <span key={index} className={`${dot ? 'dot-finished' : 'dot'}`}></span>;
         })}

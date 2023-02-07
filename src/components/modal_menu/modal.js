@@ -15,7 +15,7 @@ const Modal = ({
     }
 
     return (
-        <div className='modal' style={{display:  isMenuVisible ? 'block' : 'none' }}>
+        <div className={`${!isMenuVisible && 'hidden'}`}>
 
             <div className='modal-header'>
                 <h2>Settings</h2>
@@ -42,11 +42,6 @@ const Modal = ({
                 <div className='modal-menu-element'>
                     <p>Pomodoros before long break :</p>
                     <input type={"number"} defaultValue={pomodorosBeforeLongBreak} onChange={(e) => {changeHandler('pomodorosBeforeLongBreak', e.target.value)}}></input>
-                </div>
-
-                <div className='modal-menu-element'>
-                    <p>Number of sessions :</p>
-                    <input type={"number"} defaultValue={sessions} onChange={(e) => {changeHandler('sessions', e.target.value)}}></input>
                 </div>
             </div>
         </div>

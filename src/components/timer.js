@@ -42,11 +42,11 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
         };
     }
 
-    return <div className='timer'>
-        <p className='timer-display'>{parseTime().min}:{parseTime().sec}</p>
-        <div className='timer-modes'>
-            <button className='button' onClick={toggleCountdown}>{intervalID ? 'PAUSE' : 'START'}</button>
-            <button className='button' onClick={resetTimer}>RESET</button>
+    return <div className='bg-red-100 p-4'>
+        <p className='font-bold text-4xl text-center bg-yellow-500'>{parseTime().min}:{parseTime().sec}</p>
+        <div className='bg-green-100 p-4 flex justify-around'>
+            <button className='font-bold rounded-md  border border-zinc-600' onClick={toggleCountdown}>{intervalID ? 'PAUSE' : 'START'}</button>
+            <button className='font-bold  border-zinc-600' onClick={resetTimer}>RESET</button>
         </div>
     </div>
 }

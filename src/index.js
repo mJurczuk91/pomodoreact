@@ -4,9 +4,7 @@ import App from './components/app';
 
 const Pomodoro = () => {
   return (
-    <div className=' bg-blue-200'>
-      <App />
-    </div>
+    <App />
   )
 }
 

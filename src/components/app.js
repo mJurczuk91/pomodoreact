@@ -4,6 +4,7 @@ import Timer from './timer.js';
 import FinishedPomodorosDisplay from './finished_pomodoros_display.js';
 import Header from './header.js';
 import './css/style.css';
+import { createPortal } from 'react-dom';
 
 class App extends Component {
     state = {
@@ -57,19 +58,22 @@ class App extends Component {
 
     render() {
         return (
-            <div className=' m-auto'>
-                <Modal
-                    pomodoro={this.state.pomodoro}
-                    shortBreak={this.state.shortBreak}
-                    longBreak={this.state.longBreak}
-                    sessions={this.state.sessions}
-                    pomodorosBeforeLongBreak={this.state.pomodorosBeforeLongBreak}
-                    isMenuVisible={this.state.isMenuVisible}
-                    toggleMenuVisibility={this.toggleMenuVisibility}
-                    setTaskLength={this.setTaskLength}
-                />
+            <div className='m-auto mt-4'>
+                {this.state.isMenuVisible &&
+                    createPortal(<Modal
+                        pomodoro={this.state.pomodoro}
+                        shortBreak={this.state.shortBreak}
+                        longBreak={this.state.longBreak}
+                        sessions={this.state.sessions}
+                        pomodorosBeforeLongBreak={this.state.pomodorosBeforeLongBreak}
+                        isMenuVisible={this.state.isMenuVisible}
+                        toggleMenuVisibility={this.toggleMenuVisibility}
+                        setTaskLength={this.setTaskLength}
 
-                <div className='max-w-2xl m-auto'>
+                    />, document.getElementById('modal'))
+                }
+
+                <div className='max-w-2xl m-auto bg-slate-100'>
                     <Header toggleMenuVisibility={this.toggleMenuVisibility} modeButtonClicked={this.modeButtonClicked} />
                     <Timer initialSeconds={(this.state[this.state.currentTask]) * 60} taskDidFinish={this.taskDidFinish} />
                     <FinishedPomodorosDisplay pomodoros={this.state.pomodorosDone} maxPomodoros={this.state.pomodorosBeforeLongBreak} />

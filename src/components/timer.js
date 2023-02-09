@@ -42,11 +42,11 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
         };
     }
 
-    return <div className='bg-red-100 p-4'>
-        <p className='font-bold text-4xl text-center bg-yellow-500'>{parseTime().min}:{parseTime().sec}</p>
-        <div className='bg-green-100 p-4 flex justify-around'>
-            <button className='font-bold rounded-md  border border-zinc-600' onClick={toggleCountdown}>{intervalID ? 'PAUSE' : 'START'}</button>
-            <button className='font-bold  border-zinc-600' onClick={resetTimer}>RESET</button>
+    return <div className='p-4'>
+        <p className='font-bold text-6xl text-center border-dashed border-black border-4'>{parseTime().min}:{parseTime().sec}</p>
+        <div className={'p-4 flex justify-around'}>
+            <button className='px-4 font-bold text-lg hover:bg-slate-500 hover:bg-opacity-20' onClick={toggleCountdown}>{intervalID ? 'PAUSE' : 'START'}</button>
+            <button className='px-4 font-bold text-lg hover:bg-slate-500 hover:bg-opacity-20' onClick={resetTimer}>RESET</button>
         </div>
     </div>
 }

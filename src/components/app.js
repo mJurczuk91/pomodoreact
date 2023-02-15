@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Modal from './modal_menu/modal.js';
-import Timer from './timer.js';
-import FinishedPomodorosDisplay from './finished_pomodoros_display.js';
-import Header from './header.js';
+import Timer from './pomodoro/timer';
+import FinishedPomodorosDisplay from './pomodoro/finished-pomodoros-display.js';
+import Header from './layout/header.js';
 import './css/style.css';
 import { createPortal } from 'react-dom';
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Modal from './modal_menu/modal.js';
+import { Modal } from './ui/modal';
 import Timer from './pomodoro/timer';
 import FinishedPomodorosDisplay from './pomodoro/finished-pomodoros-display.js';
 import Header from './layout/header.js';
+import { Input } from './ui/input';
 import './css/style.css';
-import { createPortal } from 'react-dom';
 
 class App extends Component {
     state = {
@@ -56,10 +56,16 @@ class App extends Component {
         this.setState({ currentTask: taskName })
     }
 
+    //(event) => { changeHandler('pomodoro', event.target.value) }
+
     render() {
         return (
             <div className='m-auto mt-4'>
-                {this.state.isMenuVisible &&
+                {this.state.isMenuVisible && 
+                <Modal onCloseHandler={this.toggleMenuVisibility}>
+
+                </Modal>}
+{/*                 {this.state.isMenuVisible &&
                     createPortal(<Modal
                         pomodoro={this.state.pomodoro}
                         shortBreak={this.state.shortBreak}
@@ -71,7 +77,9 @@ class App extends Component {
                         setTaskLength={this.setTaskLength}
 
                     />, document.getElementById('modal'))
-                }
+                } */}
+
+
 
                 <div className='max-w-2xl m-auto bg-slate-100'>
                     <Header toggleMenuVisibility={this.toggleMenuVisibility} modeButtonClicked={this.modeButtonClicked} />

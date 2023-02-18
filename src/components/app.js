@@ -43,7 +43,6 @@ class App extends Component {
         this.setState({
             isMenuVisible: !(this.state.isMenuVisible)
         });
-        console.log(this.state.pomodorosDone);
     }
 
     setTaskLength = (task, length) => {

@@ -33,12 +33,11 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
     }
 
     const parseTime = () => {
-        let sec = (initialSeconds - timeElapsed) % 60;
-        let min = (initialSeconds - timeElapsed - sec) / 60;
-        if(sec === 0) sec = '00';
+        let sec = ((initialSeconds - timeElapsed) % 60);
+        let min = Math.floor((initialSeconds - timeElapsed) / 60);
         return {
             min,
-            sec
+            sec: sec=== 0 ? '00' : sec,
         };
     }
 

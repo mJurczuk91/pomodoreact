@@ -19,7 +19,7 @@ const SettingsProvider = (props) => {
     const changeTaskDuration = (task, duration) => {
         dispatchSettingsChange({
             type: 'CHANGE_TASK_DURATION',
-            payload:{
+            payload: {
                 task,
                 duration,
             }
@@ -29,7 +29,7 @@ const SettingsProvider = (props) => {
     const changeCurrentTask = (task) => {
         dispatchSettingsChange({
             type: 'CHANGE_CURRENT_TASK',
-            payload:{
+            payload: {
                 task,
             }
         })
@@ -53,7 +53,7 @@ const SettingsProvider = (props) => {
         changeCurrentTask,
     });
 
-    return <SettingsContext.Provider>
+    return <SettingsContext.Provider value={settings}>
         {props.children}
     </SettingsContext.Provider>
 };

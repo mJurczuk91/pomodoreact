@@ -7,7 +7,7 @@ const settingsReducer = (prevState, action) => {
         case 'TASK_DURATION_CHANGED': {
             return taskDurationChangedHandler(prevState, action.payload);
         }
-        case 'CHANGE_CURRENT_TASK':{
+        case 'CHANGE_CURRENT_TASK': {
             return changeCurentTaskHandler(prevState, action.payload)
         }
         default:
@@ -15,29 +15,29 @@ const settingsReducer = (prevState, action) => {
     }
 }
 
-const changeCurentTaskHandler = (prevState, {newTask}) => {
-    const newState = {...prevState};
+const changeCurentTaskHandler = (prevState, { newTask }) => {
+    const newState = { ...prevState };
     newState.currentTask = newTask;
     return newState;
 }
 
-const taskDurationChangedHandler = (prevState, {task, newDuration}) => {
-    const newState = {...prevState};
+const taskDurationChangedHandler = (prevState, { task, newDuration }) => {
+    const newState = { ...prevState };
     newState.duration[task] = newDuration;
     return newState;
 }
 
 const toggleMenuVisibilityHandler = (prevState) => {
-    const newState = {...prevState};
+    const newState = { ...prevState };
     newState.isMenuVisible = !prevState.isMenuVisible;
     return newState;
 }
 
 const taskDidFinishHandler = (prevState) => {
-    const newState = {...prevState};
-    switch (prevState.currentTask){
+    const newState = { ...prevState };
+    switch (prevState.currentTask) {
         case 'pomodoro':
-            if(prevState.pomodorosDone === prevState.pomodorosBeforeLongBreak -1){
+            if (prevState.pomodorosDone === prevState.pomodorosBeforeLongBreak - 1) {
                 newState.pomodorosDone = 0;
                 newState.currentTask = 'longBreak';
             } else {
@@ -45,7 +45,7 @@ const taskDidFinishHandler = (prevState) => {
                 newState.currentTask = 'shortBreak';
             }
             break;
-        default:{
+        default: {
             newState.currentTask = 'pomodoro';
         }
     }

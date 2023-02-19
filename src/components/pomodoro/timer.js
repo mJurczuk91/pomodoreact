@@ -1,9 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import SettingsContext from '../store/settings-context';
 import { Button } from '../ui/button';
+import FinishedPomodorosDisplay from './finished-pomodoros-display';
 
-const Timer = ({initialSeconds, taskDidFinish}) => {
-    let [timeElapsed, setTimeElapsed] = useState(0);
-    let [intervalID, setIntervalID] = useState(null);
+const toSeconds = (min) => min * 60;
+
+const Timer = () => {
+    const [timeElapsed, setTimeElapsed] = useState(0);
+    const [intervalID, setIntervalID] = useState(null);
+
+    const ctx = useContext(SettingsContext);
+    const {currentTask, duration, taskDidFinish} = ctx;
 
     const resetTimer = () => {
         if(intervalID){
@@ -13,14 +20,14 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
         setTimeElapsed(0);
     }
 
-    useEffect(resetTimer, [initialSeconds]);
+    useEffect(resetTimer, [currentTask, duration[currentTask]]);
 
     const toggleCountdown = () => {
         if (!intervalID) {
             setIntervalID(
                 setInterval(() => {
-                    setTimeElapsed(++timeElapsed);
-                    if(timeElapsed === initialSeconds){
+                    setTimeElapsed(timeElapsed => timeElapsed +1);
+                    if(timeElapsed === toSeconds(duration[currentTask])){
                         resetTimer();
                         taskDidFinish();
                     }
@@ -33,11 +40,12 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
     }
 
     const parseTime = () => {
-        let sec = ((initialSeconds - timeElapsed) % 60);
-        let min = Math.floor((initialSeconds - timeElapsed) / 60);
+        let min = Math.floor((toSeconds(duration[currentTask]) - timeElapsed) / 60);
+        let sec = (toSeconds(duration[currentTask]) - timeElapsed) % 60;
+        if(sec < 10) sec = `0${sec}`;
         return {
             min,
-            sec: sec=== 0 ? '00' : sec,
+            sec,
         };
     }
 
@@ -47,6 +55,7 @@ const Timer = ({initialSeconds, taskDidFinish}) => {
             <Button value={intervalID ? 'PAUSE' : 'START'} onClick={toggleCountdown} />
             <Button value={'RESET'} onClick={resetTimer} />
         </div>
+       {/*  <FinishedPomodorosDisplay /> */}
     </div>
 }
 

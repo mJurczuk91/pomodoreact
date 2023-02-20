@@ -18,6 +18,7 @@ const SettingsContext = React.createContext({
     toggleMenuVisibility: () => { },
     changeTaskDuration: () => { },
     changeCurrentTask: () => { },
+    changePomodorosBeforeLongBreak: () => {},
 });
 
 export default SettingsContext;

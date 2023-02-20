@@ -5,14 +5,24 @@ const settingsReducer = (prevState, action) => {
         case 'TOGGLE_MENU_VISIBILITY':
             return toggleMenuVisibilityHandler(prevState);
         case 'TASK_DURATION_CHANGED': {
+            console.log(action.payload);
             return taskDurationChangedHandler(prevState, action.payload);
         }
         case 'CHANGE_CURRENT_TASK': {
-            return changeCurentTaskHandler(prevState, action.payload)
+            return changeCurentTaskHandler(prevState, action.payload);
+        }
+        case 'CHANGE_POMODOROS_BEFORE_LONG_BREAK':{
+            return changePomodorosBeforeLongBreak(prevState, action.payload);
         }
         default:
-            console.error('!!!SETTINGS_CHANGE_INCORRECT_ACTION_TYPE!!!')
+            console.error(`!!!SETTINGS_CHANGE_INCORRECT_ACTION_TYPE!!! -- ${action.type}`);
     }
+}
+
+const changePomodorosBeforeLongBreak = (prevState, {number}) => {
+    const newState = {...prevState};
+    newState.pomodorosBeforeLongBreak = number;
+    return newState;
 }
 
 const changeCurentTaskHandler = (prevState, { newTask }) => {
@@ -21,9 +31,9 @@ const changeCurentTaskHandler = (prevState, { newTask }) => {
     return newState;
 }
 
-const taskDurationChangedHandler = (prevState, { task, newDuration }) => {
+const taskDurationChangedHandler = (prevState, { task, duration }) => {
     const newState = { ...prevState };
-    newState.duration[task] = newDuration;
+    newState.duration[task] = duration;
     return newState;
 }
 

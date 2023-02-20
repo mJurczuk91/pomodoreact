@@ -18,7 +18,7 @@ const SettingsProvider = (props) => {
 
     const changeTaskDuration = (task, duration) => {
         dispatchSettingsChange({
-            type: 'CHANGE_TASK_DURATION',
+            type: 'TASK_DURATION_CHANGED',
             payload: {
                 task,
                 duration,
@@ -32,6 +32,15 @@ const SettingsProvider = (props) => {
             payload: {
                 task,
             }
+        })
+    }
+
+    const changePomodorosBeforeLongBreak = (number) => {
+        dispatchSettingsChange({
+            type: 'CHANGE_POMODOROS_BEFORE_LONG_BREAK',
+            payload: {
+                number,
+            },
         })
     }
 
@@ -51,6 +60,7 @@ const SettingsProvider = (props) => {
         toggleMenuVisibility,
         changeTaskDuration,
         changeCurrentTask,
+        changePomodorosBeforeLongBreak,
     });
 
     return <SettingsContext.Provider value={settings}>

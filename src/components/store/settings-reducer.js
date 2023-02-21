@@ -25,9 +25,9 @@ const changePomodorosBeforeLongBreak = (prevState, {number}) => {
     return newState;
 }
 
-const changeCurentTaskHandler = (prevState, { newTask }) => {
+const changeCurentTaskHandler = (prevState, { task }) => {
     const newState = { ...prevState };
-    newState.currentTask = newTask;
+    newState.currentTask = task;
     return newState;
 }
 

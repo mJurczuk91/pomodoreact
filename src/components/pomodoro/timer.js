@@ -55,7 +55,7 @@ const Timer = () => {
             <Button value={intervalID ? 'PAUSE' : 'START'} onClick={toggleCountdown} />
             <Button value={'RESET'} onClick={resetTimer} />
         </div>
-       {/*  <FinishedPomodorosDisplay /> */}
+        <FinishedPomodorosDisplay />
     </div>
 }
 
